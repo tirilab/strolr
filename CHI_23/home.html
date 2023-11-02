@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Wearable Data Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Wearable Data Dashboard</h1>
+    </header>
+
+    <main>
+        <section id="dashboard">
+            <!-- Data will be displayed here using JavaScript -->
+        </section>
+        <section id="login-form">
+           <h2>Login</h2>
+           <form action="login.php" method="post">
+               <label for="username">Username:</label>
+               <input type="text" name="username" id="username" required>
+               <label for="password">Password:</label>
+               <input type="password" name="password" id="password" required>
+               <button type="submit">Log In</button>
+           </form>
+       </section>
+
+       <section id="survey-form">
+           <h2>Survey Data Entry</h2>
+           <form action="submit_survey.php" method="post">
+               <label for="name">Name:</label>
+               <input type="text" name="name" id="name" required>
+               <label for="age">Age:</label>
+               <input type="number" name="age" id="age" required>
+               <label for="feedback">Feedback:</label>
+               <textarea name="feedback" id="feedback" rows="4" required></textarea>
+               <button type="submit">Submit</button>
+           </form>
+       </section>
+   </main>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2023 CHI Project</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

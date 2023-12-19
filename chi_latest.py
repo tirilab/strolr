@@ -1,7 +1,7 @@
 import streamlit as st
 from langchain.llms import OpenAI
 
-# Set up the layout
+# layout
 st.set_page_config(layout="wide")
 left_column = st.sidebar
 right_column = st

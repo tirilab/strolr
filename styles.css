@@ -1,0 +1,19 @@
+/* Basic styling for the page */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.0;
+    margin: 15px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.category-heading {
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.subtopics {
+    display: none;
+}

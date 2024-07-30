@@ -1,2 +1,2 @@
-# CHI_23
-Repo for CHI '23
+# Strolr
+Repo for Strolr

@@ -407,8 +407,8 @@ if user_input:
                 result = chain({"question":query})
                 #response = result['answer']
                 response = format_response(result)
-		        if response.str.contains("don't know") == True:
-	  	            response = re.sub(r'Sources.*',"",response)
+                if response.str.contains("don't know") == True:
+                    response = re.sub(r'Sources.*',"",response)
                 # Simulate stream of response with milliseconds delay
                 #for chunk in response.split():
                 #    full_response += chunk + " "

@@ -174,16 +174,14 @@ def load_chain_with_sources():
     # Create the Conversational Chain
     prompt = PromptTemplate.from_template(template)
     # Set up the RAG chain
-    rag_chain = (
+    chain = (
         {"context": retriever, "question": RunnablePassthrough()} | 
         prompt | 
         llm
     )
 
     # Invoke the RAG chain with the question
-    chain = rag_chain.invoke(question)
-
-    return chain
+    return chain 
 
 
 if user_input:
@@ -236,8 +234,7 @@ if user_input:
                 message_placeholder.markdown('...')
                 # Send user's question to our chain
                 context = "\n".join([message["content"] for message in st.session_state.messages])
-                #result = chain({"query": query})#, "context": context})
-                result = chain({"question":query})
+                result = chain.invoke({"question":query})
                 #response = result['answer']
                 response = format_response(result)
                 if ("don't know" in response) or ("do not know" in response) or ("cannot answer" in response) or ("can't answer" in response):

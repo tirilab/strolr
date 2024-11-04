@@ -163,9 +163,9 @@ def load_chain_with_sources():
         Don't try to make up an answer.
         Never give a response in any language besides the English language even if the user requests it.
         If the question is not related to pregnancy or childcare, politely inform them that you are tuned to only answer questions about pregnancy and childcare.
-        If the answer is not in the {context}, say that you don't know.
+        If the answer is not in the {context}, say that you don't know in a kind way or give them a suggestion on a different question to ask.
         Do your best to understand typos, casing, and framing of questions. 
-	Do not return sources if you responded with I don't know.
+	    Do not return sources if you responded with I don't know.
        
         {context}
         Question: {question}
@@ -173,20 +173,15 @@ def load_chain_with_sources():
 
     # Create the Conversational Chain
     prompt = PromptTemplate.from_template(template)
-    rag_chain_from_docs = (
-        {
-            "input": lambda x: x['input'],
-            "context": lambda x: format_response(x['context']),
-        }
-        | prompt
-        | llm
-        | StrOutputParser()
+    # Set up the RAG chain
+    rag_chain = (
+        {"context": retriever, "question": RunnablePassthrough()} | 
+        prompt | 
+        llm
     )
 
-    retrieve_docs = (lambda x:x['input']) | retriever
-
-    chain = RunnablePassthrough.assign(context= retrieve_docs).assign(answer = rag_chain_from_docs)
-
+    # Invoke the RAG chain with the question
+    chain = rag_chain.invoke(question)
 
     return chain
 
@@ -246,7 +241,7 @@ if user_input:
                 #response = result['answer']
                 response = format_response(result)
                 if ("don't know" in response) or ("do not know" in response) or ("cannot answer" in response) or ("can't answer" in response):
-                    response = re.sub(r'Sources used:.*\n*.*\n.*\n.*\n.*\n.*\n.*\n.*',"",response)
+                    response = re.sub(r"(Sources used:.*)", '', response, flags=re.DOTALL)
                 # Simulate stream of response with milliseconds delay
                 #for chunk in response.split():
                 #    full_response += chunk + " "

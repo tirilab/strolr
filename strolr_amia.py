@@ -17,10 +17,8 @@ import os
 from langchain.chains import create_retrieval_chain
 from langchain.memory import ConversationBufferWindowMemory
 from langchain.memory import ConversationBufferMemory
-from langchain.chat_models import ChatOpenAI
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
-
 from langchain.prompts import PromptTemplate
 from langchain.prompts.chat import SystemMessagePromptTemplate
 from langchain.chains import RetrievalQA
@@ -235,6 +233,8 @@ if user_input:
                 # Send user's question to our chain
                 context = "\n".join([message["content"] for message in st.session_state.messages])
                 result = chain.invoke(query)
+                print(result)
+                result = result.content
                 #response = result['answer']
                 response = format_response(result)
                 if ("don't know" in response) or ("do not know" in response) or ("cannot answer" in response) or ("can't answer" in response):

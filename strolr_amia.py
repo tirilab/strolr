@@ -6,11 +6,11 @@ import streamlit as st
 import streamlit.components.v1 as components
 from langchain.vectorstores.pgvector import PGVector
 from pgvector.psycopg2 import register_vector
-from langchain.llms import OpenAI
+from langchain_openai import OpenAI
 from openai import OpenAI
 import openai
 import numpy as np
-from langchain.embeddings.openai import OpenAIEmbeddings
+from langchain_openai import OpenAIEmbeddings
 import os
 from langchain.chains import create_retrieval_chain
 from langchain.memory import ConversationBufferWindowMemory

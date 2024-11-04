@@ -251,7 +251,8 @@ def format_response(responses):
 # In[46]:
 
 
-@st.cache_resource
+# @st.cache_resource
+@st.cache_data
 #def load_chain_with_sources():
 def load_chain_with_sources():
     

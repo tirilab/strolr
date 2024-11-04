@@ -189,7 +189,7 @@ def load_chain_with_sources():
 
     # Pass input query to retriever
     retrieve_docs = (lambda x: x["input"]) | retriever
-
+    print(type(retrieve_docs))
     # Below, we chain `.assign` calls. This takes a dict and successively
     # adds keys-- "context" and "answer"-- where the value for each key
     # is determined by a Runnable. The Runnable operates on all existing

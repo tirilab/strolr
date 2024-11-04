@@ -2,9 +2,11 @@
 # coding: utf-8
 
 import re
+from langchain import hub
 import streamlit as st
 import streamlit.components.v1 as components
 from langchain.vectorstores.pgvector import PGVector
+from langchain_core.output_parsers import StrOutputParser
 from pgvector.psycopg2 import register_vector
 from langchain_openai import OpenAI
 from openai import OpenAI
@@ -142,7 +144,8 @@ def load_chain_with_sources():
     
     retriever = store.as_retriever(search_type="similarity_score_threshold", search_kwargs = {"k":3, "score_threshold":0.8})
     llm = ChatOpenAI(temperature = 0.8, model = "gpt-4o-mini")
-    
+    prompt = hub.pull("rlm/rag-prompt")
+
 
     # Create memory 'chat_history' 
     #memory = ConversationBufferMemory(memory_key="chat_history", output_key='answer', return_messages = True)

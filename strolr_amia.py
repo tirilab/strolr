@@ -234,8 +234,6 @@ if user_input:
                 context = "\n".join([message["content"] for message in st.session_state.messages])
                 result = chain.invoke(query)
                 print(result.pretty_print())
-                #result = result['content']
-                
                 response = format_response(result.pretty_print())
                 if ("don't know" in response) or ("do not know" in response) or ("cannot answer" in response) or ("can't answer" in response):
                     response = re.sub(r"(Sources used:.*)", '', response, flags=re.DOTALL)

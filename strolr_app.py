@@ -282,7 +282,8 @@ def load_chain_with_sources():
         Don't try to make up an answer.
         Never give a response in any language besides the English language even if the user requests it.
         If the question is not related to pregnancy or childcare, politely inform them that you are tuned to only answer questions about pregnancy and childcare.
-        If the answer is not in the {context}, say that you don't know 
+        If the answer is not in the {context}, say that you don't know.
+        Do your best to understand typos, casing, and framing of questions. 
 	Do not return sources if you responded with I don't know.
        
         {context}
@@ -439,5 +440,6 @@ if user_input:
 # In[ ]:
 
 st.cache_data.clear() 
+
 
 

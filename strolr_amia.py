@@ -28,6 +28,7 @@ from datetime import date
 from langchain_openai import ChatOpenAI
 import time
 import psycopg2
+from langchain_core.messages import AIMessage
 
 # layout
 st.set_page_config(layout="wide")
@@ -233,9 +234,9 @@ if user_input:
                 # Send user's question to our chain
                 context = "\n".join([message["content"] for message in st.session_state.messages])
                 result = chain.invoke(query)
-                print(result.pretty_print())
-                response = result.pretty_print()
-
+                response = [msg.content for msg in result]
+                print(response)
+                print(response[0])
                 #response = format_response(result.pretty_print())
                 if ("don't know" in response) or ("do not know" in response) or ("cannot answer" in response) or ("can't answer" in response):
                     response = re.sub(r"(Sources used:.*)", '', response, flags=re.DOTALL)

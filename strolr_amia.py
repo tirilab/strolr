@@ -14,6 +14,7 @@ import openai
 import numpy as np
 from langchain_openai import OpenAIEmbeddings
 import os
+from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain.chains import create_retrieval_chain
 from langchain.memory import ConversationBufferWindowMemory
 from langchain.memory import ConversationBufferMemory
@@ -172,11 +173,29 @@ def load_chain_with_sources():
 
     # Create the Conversational Chain
     prompt = PromptTemplate.from_template(template)
+    question_answer_chain = create_stuff_documents_chain(llm, prompt)
+
     # Set up the RAG chain
-    chain = (
-        {"context": retriever, "question": RunnablePassthrough()} | 
-        prompt | 
-        llm
+    #chain = create_retrieval_chain(retriever, question_answer_chain)
+    rag_chain_from_docs = (
+        {
+            "input": lambda x: x["input"],  # input query
+            "context": lambda x: format_response(x["context"]),  # context
+        }
+        | prompt  # format query and context into prompt
+        | llm  # generate response
+        | StrOutputParser()  # coerce to string
+    )
+
+    # Pass input query to retriever
+    retrieve_docs = (lambda x: x["input"]) | retriever
+
+    # Below, we chain `.assign` calls. This takes a dict and successively
+    # adds keys-- "context" and "answer"-- where the value for each key
+    # is determined by a Runnable. The Runnable operates on all existing
+    # keys in the dict.
+    chain = RunnablePassthrough.assign(context=retrieve_docs).assign(
+        answer=rag_chain_from_docs
     )
 
     # Invoke the RAG chain with the question
@@ -234,19 +253,12 @@ if user_input:
                 # Send user's question to our chain
                 context = "\n".join([message["content"] for message in st.session_state.messages])
                 result = chain.invoke(query)
-                metadata = [msg for msg in result]
-            
-                response = metadata[0][1]
-                response = format_response(response)
+                #metadata = [msg for msg in result]
+                #response = metadata[0][1]
+                response = format_response(result)
                 if ("don't know" in response) or ("do not know" in response) or ("cannot answer" in response) or ("can't answer" in response):
                     response = re.sub(r"(Sources used:.*)", '', response, flags=re.DOTALL)
-                # Simulate stream of response with milliseconds delay
-                #for chunk in response.split():
-                #    full_response += chunk + " "
-                #    time.sleep(0.05)
-                    # Add a blinking cursor to simulate typing
-                #    message_placeholder.write(full_response + " ")
-                #message_placeholder.write(full_response)
+                
                 message_placeholder.write(response)
             # Add assistant message to chat history
             st.session_state.messages.append({"role": "assistant", "content": response})

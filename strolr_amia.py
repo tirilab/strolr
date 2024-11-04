@@ -234,11 +234,10 @@ if user_input:
                 # Send user's question to our chain
                 context = "\n".join([message["content"] for message in st.session_state.messages])
                 result = chain.invoke(query)
-                print(type(result))
                 metadata = [msg for msg in result]
-                print(metadata[0][1])
+            
                 response = metadata[0][1]
-                #response = format_response(result.pretty_print())
+                response = format_response(response)
                 if ("don't know" in response) or ("do not know" in response) or ("cannot answer" in response) or ("can't answer" in response):
                     response = re.sub(r"(Sources used:.*)", '', response, flags=re.DOTALL)
                 # Simulate stream of response with milliseconds delay

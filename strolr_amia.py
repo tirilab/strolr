@@ -144,7 +144,7 @@ def load_chain_with_sources():
     
     retriever = store.as_retriever(search_type="similarity_score_threshold", search_kwargs = {"k":3, "score_threshold":0.8})
     llm = ChatOpenAI(temperature = 0.8, model = "gpt-4o-mini")
-    prompt = hub.pull("rlm/rag-prompt")
+    
 
 
     # Create memory 'chat_history' 
@@ -172,14 +172,14 @@ def load_chain_with_sources():
         Helpful Answer:"""
 
     # Create the Conversational Chain
-
+    prompt = PromptTemplate.from_template(template)
     rag_chain_from_docs = (
         {
             "input": lambda x: x['input'],
-            "context": lambda x: format_docs(x['context']),
+            "context": lambda x: format_response(x['context']),
         }
         | prompt
-        | llm.with_structured_output(format_responses)
+        | llm
         | StrOutputParser()
     )
 
@@ -246,7 +246,7 @@ if user_input:
                 #response = result['answer']
                 response = format_response(result)
                 if ("don't know" in response) or ("do not know" in response) or ("cannot answer" in response) or ("can't answer" in response):
-                    response = re.sub(r'Sources.*',"",response)
+                    response = re.sub(r'Sources used:.*\n*.*\n.*\n.*\n.*\n.*\n.*\n.*',"",response)
                 # Simulate stream of response with milliseconds delay
                 #for chunk in response.split():
                 #    full_response += chunk + " "

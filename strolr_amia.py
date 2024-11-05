@@ -64,7 +64,7 @@ with st.sidebar.expander("How to use"):
         **If you are experiencing an emergency, call 9-1-1 immediately.**
     """)
     
-left_column.link_button("Resources", "https://mh-n.github.io/strolr/", help = "Click to browse resources")
+left_column.link_button("Resources", "https://tirilab.github.io/strolr/", help = "Click to browse resources")
 
 
 # Main content area - Chat

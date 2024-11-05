@@ -198,21 +198,21 @@ body {
 @media (max-width: 768px) {
     /* Stack containers vertically */
     .flex-container {
-        flex-direction: column;
+        flex-direction: row;
         width: 100%; /* Full width for mobile */
     }
 
     /* Sidebar takes full width */
     .sidebar-card {
-        width: 100%;
-        margin-bottom: 20px; /* Spacing below the sidebar */
+        width: 0px;
+        margin-bottom: 0; /* Spacing below the sidebar */
         border-right: none;
-        border-bottom: 1px solid #e5e7eb;
+        border-bottom: 0px solid #e5e7eb;
     }
 
     /* Reduce padding and font size for smaller screens */
     .content, .sidebar-card {
-        padding: 15px;
+        padding: 0px;
     }
 
     .content h1 {

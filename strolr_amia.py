@@ -108,7 +108,7 @@ chat_hist = ''
 
 # FORMATTING RESPONSES
 def format_response(responses):
-    source_documents = responses["source_documents"]
+    source_documents = responses["context"]
     source_content = [doc.page_content for doc in source_documents]
     source_metadata = [doc.metadata for doc in source_documents]
 

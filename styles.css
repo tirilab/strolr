@@ -21,6 +21,7 @@ body {
     background-color: white;
     border-radius: 8px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow for card effect */
+    flex-direction: row;
 }
 .sidebar-card {
     flex: 1;
@@ -136,3 +137,16 @@ h1 {
         font-size: 1em;
     }
 }
+
+/* Add responsive behavior for smaller screens */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Stack vertically on smaller screens */
+    }
+
+    .sidebar-card {
+        border-right: none;
+        border-bottom: 1px solid #e5e7eb;
+    }
+}
+

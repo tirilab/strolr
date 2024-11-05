@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<div class="container">
     <div class="sidebar-card">
         <h2>About Strolr's Resources</h2>
         <p>The following resources on pregnancy come from hand-selected articles from trusted US governmental agencies, covering topics like maternal health, nutrition, and prenatal safety. Browse the sections on the right to find detailed information and external links for further reading. This was not aimed to be a fully comprehensive or exhaustive list of resources or categories. 
@@ -13,6 +14,8 @@
             important information needs for pregnant women's healthy pregnancies. The database has representation from the sources: OASH, CDC, FDA, NIH, MedlinePlus. The resources have been organized by category for your easy browsing. The agency source will be in parentheses next to the link. 
         </p>
     </div>
+
+</div class='container'>
     <div class="container">
        
         <div class = "content">
@@ -224,11 +227,347 @@
                 </ol>
             </div>
         </div>
-        <!-- Repeat the above structure for other categories -->
-    </div>
+        Repeat the above structure for other categories -->
+    <!-- </div>
         <script src="script.js"></script>
     </div>
 </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pregnancy and Infant Care Information Resources</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Sidebar Toggle Button -->
+    <button id="toggle-sidebar" onclick="toggleSidebar()">ⓘ</button>
+
+    <div class="flex-container">
+        <!-- Sidebar -->
+        <div class="sidebar-card" id="sidebar">
+            <!-- <div class="sidebar-header" onclick="toggleDropdown()"> -->
+                <h2>About Strolr's Resources</h2>
+                <!-- <span id="dropdown-arrow">▼</span> -->
+            <!-- </div> -->
+            <!-- <div class="sidebar-content" id="sidebar-content"> -->
+                <p>The following resources on pregnancy come from hand-selected articles from trusted US governmental agencies, covering topics like maternal health, nutrition, and prenatal safety.</p>
+                
+    <p>Browse the sections on the right to find detailed information and external links for further reading. This is not a fully comprehensive or exhaustive list of resources or categories.</p>
+    
+    <p>The resources have been divided into: <em>Nutrition and Supplements, Harmful Substances, Lifestyle Considerations, Fetal Development, Prenatal Care, Preparing for Labor and Delivery, Pregnancy Complications, Preparing for Baby</em>, and <em>Miscellaneous</em>. These topics were selected after a landscape literature search to identify important information needs for healthy pregnancies.</p>
+    
+    <p>The database includes resources from agencies such as <em>OASH, CDC, FDA, NIH</em>, and <em>MedlinePlus</em>. The resources are organized by category for easy browsing, with the agency source listed in parentheses next to each link.</p>
+            <!-- </div> -->
+        </div>
+
+        <!-- Main Content Section -->
+        <div class = "content">
+            <h1>Healthy Pregnancy Information Resources</h1>
+    
+            <div class="category">
+                <h2 class="category-heading" onclick="toggleSubtopics('nutrition&Supplements')">▹ Nutrition and Supplements</h2>
+                <div class="subtopics" id="nutrition&Supplements">
+                    <ol>
+                        <li><a href="https://www.fda.gov/consumers/womens-health-topics/medicine-and-pregnancy">Medicine and Pregnancy (FDA)
+                        </a></li>
+                        <li><a href="https://www.womenshealth.gov/pregnancy/youre-pregnant-now-what/staying-healthy-and-safe">Staying healthy and safe (OASH)</a></li>
+                        <li><a href="https://www.cdc.gov/medicine-and-pregnancy/about/index.html">Medicine use during pregnancy (CDC)</a></li> 
+                        <li><a href="https://www.womenshealth.gov/a-z-topics/pregnancy-and-medicines">Medicine in pregnancy (OASH)</a></li>
+                        <li><a href="https://www.fda.gov/food/people-risk-foodborne-illness/food-safety-mom-be-glance">Food safety moms-to-be I (FDA)</a></li>
+                        <li><a href="https://www.fda.gov/food/people-risk-foodborne-illness/dietary-advice-moms-be">Dietary advice for moms-to-be (FDA)</a></li>
+                        <li><a href="https://www.fda.gov/food/health-educators/listeria-food-safety-moms-be">Listeria for moms-to-be (FDA)</a></li>
+                        <li><a href="https://www.fda.gov/food/people-risk-foodborne-illness/toxoplasma-food-safety-moms-be">Toxoplasma for moms-to-be (FDA)</a></li>
+                        <li><a href="https://www.fda.gov/food/people-risk-foodborne-illness/what-foodborne-illness-food-safety-moms-be">Foodbourne illness for moms-to-be (FDA)</a></li>
+
+                        <li><a href="https://www.fda.gov/food/consumers/advice-about-eating-fish">Advice about eating fish for pregnant women (FDA)</a></li>
+                        <li><a href="https://www.fda.gov/media/83740/download?attachment">Food safety booklet for pregnancy (FDA)</a></li>
+                        <li><a href="https://health.gov/myhealthfinder/pregnancy/nutrition-and-physical-activity/eat-healthy-during-pregnancy-quick-tips">Eat Healthy During Pregnancy: Quick Tips (OASH)</a></li>
+                        <li><a href="https://www.cdc.gov/folic-acid/about/index.html">Use of Folic acid (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/folic-acid/about/intake-and-sources.html">Folic acid sources (CDC)</a></li>
+
+
+                        <li><a href="https://www.cdc.gov/folic-acid/about/safety.html">Folic acid safety (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/folic-acid/health-equity/index.html">Improving folic acid intake (CDC)</a></li>
+                        <li><a href="https://www.foodsafety.gov/people-at-risk/pregnant-women">Food to avoid during Pregnancy (foodsafety.gov)</a></li>
+                        <li><a href="https://www.cdc.gov/vaccines-pregnancy/vaccine-safety/">Vaccine Safety for Moms-To-Be (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/vaccines-pregnancy/about/index.html">Vaccines During and After Pregnancy (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/vaccines-pregnancy/recommended-vaccines/index.html">Vaccines and Pregnancy: Things to Know</a></li>
+                        <li><a href="https://www.cdc.gov/medicine-and-pregnancy/about/index.html">Facts about Medicine and Pregnancy</a></li>
+                        <li><a href="https://www.cdc.gov/flu/highrisk/qa_vacpregnant.htm">Flu Vaccine Safety and Pregnancy</a></li>
+                        <li><a href="https://medlineplus.gov/pregnancyandnutrition.html">Pregnancy and Nutrition (MEDLINEPLUS)</a></li>
+                        <li><a href="https://www.cdc.gov/pregnancy/about/index.html">About Planning for Pregnancy</a></li>
+    
+    
+                    </ol>
+                </div>
+            </div>
+            <div class="category">
+                <h2 class="category-heading" onclick="toggleSubtopics('harmfulsubstances')">▹ Harmful Substances</h2>
+                <div class="subtopics" id="harmfulsubstances">
+                    <ol>
+    
+                        <li><a href="https://www.fda.gov/tobacco-products/health-effects-tobacco-use/how-smoking-affects-reproductive-health">Smoking during pregnancy (FDA)</a></li>
+                        <li><a href="https://www.fda.gov/consumers/consumer-updates/what-you-should-know-about-using-cannabis-including-cbd-when-pregnant-or-breastfeeding">Cannabis during pregnancy (FDA)	</a></li>   
+	                    <li><a href="https://www.fda.gov/radiation-emitting-products/medical-x-ray-imaging/x-rays-pregnancy-and-you">X-ray duirng pregnancy (FDA)</a></li>
+                        <li><a href="https://www.cdc.gov/ncbddd/fasd/alcohol-use.html">Alcohol Use During Pregnancy (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/opioid-use-during-pregnancy/about/">About Opioid Use During Pregnancy (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/tobacco/about/cigarettes-and-reproductive-health.html">Health effect of cigarettes (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/overdose-prevention/hcp/clinical-care/opioid-use-and-pregnancy.html">Pregnancy and opioid pain medications (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/tobacco/campaign/tips/diseases/pregnancy.html">Smoking, pregnancy and babies (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/opioid-use-during-pregnancy/treatment/">Treatment for Opioid Use Disorder Before, During, and After Pregnancy (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/maternal-infant-health/pregnancy-substance-abuse/e-cigarettes.html">E-cigarettes during pregnancy (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/niosh/reproductive-health/prevention/secondhand-smoke.html">Secondhand smoke (CDC)</a></li>
+                        <li><a href="https://orwh.od.nih.gov/research/maternal-morbidity-and-mortality/information-for-women/alcohol-use-and-pregnancy">Alcohol Use in Pregnancy (NIH)</a></li>
+
+
+
+
+                    </ol>
+                </div>
+            </div>
+            <div class="category">
+                <h2 class="category-heading" onclick="toggleSubtopics('lifestyle')">▹ Lifestyle Considerations</h2>
+                <div class="subtopics" id="lifestyle">
+                    <ol>
+                        <li><a href="https://www.womenshealth.gov/pregnancy/youre-pregnant-now-what/body-changes-and-discomforts">Body changes and discomfort (OASH)</a></li>
+                        <li><a href="https://www.womenshealth.gov/pregnancy/youre-pregnant-now-what/know-your-pregnancy-rights">Knowing pregnancy rights (OASH)</a></li>
+                        <li><a href="https://www.eeoc.gov/fact-sheet/facts-about-pregnancy-discrimination">Pregnancy-related discrimination (US Equal Empl Opp Commision)</a></li>
+                        <li><a href="https://health.gov/myhealthfinder/pregnancy/nutrition-and-physical-activity/stay-active-during-pregnancy-quick-tips">Stay active during pregnancy (health.gov)</a></li>
+                        <li><a href="https://www.niddk.nih.gov/health-information/weight-management/healthy-eating-physical-activity-for-life/health-tips-for-pregnant-women#:~:text=take%20while%20pregnant).-,Eat%20breakfast%20every%20day.,a%20week%20during%20your%20pregnancy.">Health Tips for Pregnant Women (NIDDKD)</a></li>
+                        <li><a href="https://orwh.od.nih.gov/research/maternal-morbidity-and-mortality/information-for-women/health-pregnancy-tips">General tips for healthy pregnancy (NIH)</a></li>
+                        <li><a href="https://www.cdc.gov/niosh/reproductive-health/about/index.html">Reproductive health in workspace (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/niosh/reproductive-health/about/workers.html">How workers can protect their reproductive health (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/niosh/reproductive-health/prevention/disinfectants.html">Chemical disinfectants and reproductive health (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/niosh/reproductive-health/prevention/epoxies-resins.html">Resin and reproductive health (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/niosh/reproductive-health/prevention/heat.html">Heat exposure and reproductive health (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/niosh/reproductive-health/prevention/infectious.html">Infections and reproductive health (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/niosh/reproductive-health/prevention/lead-metals.html">Lead and reproductive health (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/niosh/reproductive-health/prevention/noise.html">Noise and reproductive health (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/niosh/reproductive-health/prevention/pesticides.html">Pesticides and reproductive health (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/niosh/reproductive-health/prevention/physical-demands.html">Physical job demands and reproductive health (CDC)</a></li>
+                        <li><a href="https://www.nichd.nih.gov/health/topics/preconceptioncare/conditioninfo/healthy-pregnancy">Promote a healthy pregnancy (NIH)</a></li>
+                        <li><a href="https://www.cdc.gov/niosh/reproductive-health/prevention/smoke.html">Smoke/burning byproducts and reproductive health (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/niosh/reproductive-health/prevention/work-schedules.html">Work schedule and reproductive health (CDC)</a></li>
+
+                    </ol>
+                </div>
+            </div>
+            <div class="category">
+                <h2 class="category-heading" onclick="toggleSubtopics('fetaldevelopment')">▹ Fetal Development</h2>
+                <div class="subtopics" id="fetaldevelopment">
+                    <ol>
+                        <li><a href="https://www.womenshealth.gov/pregnancy/youre-pregnant-now-what/stages-pregnancy#1">Stages of pregnancy (OASH)</a></li>
+                        <li><a href="https://medlineplus.gov/ency/article/002398.htm">Fetal development (MEDLINEPLUS)</a></li>
+                        
+                        
+                    </ol>
+                </div>
+            </div>
+            <div class="category">
+                <h2 class="category-heading" onclick="toggleSubtopics('prenatal-care')">▹ Prenatal Care</h2>
+                <div class="subtopics" id="prenatal-care">
+                    <ol>
+                        <li><a href="https://www.womenshealth.gov/a-z-topics/prenatal-care">Prenatal care (OASH)</a></li>
+                        <li><a href="https://www.womenshealth.gov/pregnancy/youre-pregnant-now-what/prenatal-care-and-tests">Prenatal care and tests (OASH)</a></li>
+                        <li><a href="https://www.nichd.nih.gov/health/topics/preconceptioncare/conditioninfo">Pre-Pregnancy Care and Prenatal Care (NIH)</a></li>
+                        <li><a href="https://kidshealth.org/en/parents/medical-care-pregnancy.html">Medical Care During Pregnancy (MEDLINEPLUS)</a></li>
+                        <li><a href="https://www.marchofdimes.org/find-support/topics/planning-baby/prenatal-care-checkups">Prenatal care checkups (MEDLINEPLUS)</a></li>
+                        <li><a href="https://familydoctor.org/taking-care-of-you-and-your-baby-while-youre-pregnant/?adfree=true">Taking Care of You and Your Baby While You’re Pregnant (MEDLINEPLUS)</a></li>
+                        <li><a href="https://www.cdc.gov/genomics-and-health/about/genetic-counseling.html">Genetic counseling as related to pregnancy (CDC)</a></li>
+                        <li><a href="https://www.nichd.nih.gov/health/topics/preconceptioncare/conditioninfo/prenatal-visits">What happens during prenatal visits? (NIH)</a></li>
+                        
+                        
+                    </ol>
+                </div>
+            </div>
+            <div class="category">
+                <h2 class="category-heading" onclick="toggleSubtopics('delivery')">▹ Preparing for Labor and Delivery</h2>
+                <div class="subtopics" id="delivery">
+                    <ol>
+                        <li><a href="https://www.womenshealth.gov/pregnancy/childbirth-and-beyond/labor-and-birth">Labor and birth (OASH)</a></li>
+                        <li><a href="https://medlineplus.gov/ency/patientinstructions/000543.htm">What to bring to your labor and delivery (MEDLINEPLUS)</a></li>
+                        <li><a href="https://www.nichd.nih.gov/health/topics/factsheets/labor-delivery">Labor and Delivery (NIH)</a></li>
+                        <li><a href="https://www.ncbi.nlm.nih.gov/books/NBK326674/">CHILDBIRTH: LABOUR, DELIVERY AND IMMEDIATE POSTPARTUM CARE (NIH)</a></li>
+                        <li><a href="https://www.ncbi.nlm.nih.gov/books/NBK559197/">Vaginal Delivery (NIH)</a></li>
+                        <li><a href="https://medlineplus.gov/cesareandelivery.html">C-section (MEDLINEPLUS)</a></li>
+                        <li><a href="https://medlineplus.gov/ency/presentations/100191_1.htm">C-section procedure (MEDLINEPLUS)</a></li>
+                        
+                        
+                    </ol>
+                </div>
+            </div>
+            <div class="category">
+                <h2 class="category-heading" onclick="toggleSubtopics('complications')">▹ Pregnancy Complications</h2>
+                <div class="subtopics" id="complications">
+                    <ol>
+                        <li><a href="https://www.womenshealth.gov/pregnancy/youre-pregnant-now-what/pregnancy-complications">Pregnancy complications (OASH)</a></li>
+                        <li><a href="https://www.womenshealth.gov/pregnancy/youre-pregnant-now-what/pregnancy-loss">Pregnancy loss (OASH)</a></li>
+                        <li><a href="https://www.fda.gov/drugs/information-drug-class/treatment-influenza-during-pregnancy">Flu during pregnancy (FDA)</a></li>
+                        <li><a href="https://www.cdc.gov/diabetes/about/gestational-diabetes.html">Gestational Diabetes (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/bloodpressure/pregnancy.htm">High Blood Pressure During Pregnancy (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/flu/highrisk/pregnant.htm">Flu & Pregnancy (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/maternal-infant-health/preterm-birth/index.html">Preterm birth (CDC)</a></li>
+                        <li><a href="https://www.nichd.nih.gov/health/topics/preterm">Preterm Labor and Birth (NIH)</a></li>
+                        <li><a href="https://www.cdc.gov/reproductive-health/depression/index.html">Symptoms of Depression Among Women (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/diabetes/about/type-1-diabetes-pregnancy.html">Type 1 Diabetes and Pregnancy (CDC)</a></li>
+                        <li><a href="https://www.nichd.nih.gov/health/topics/factsheets/pregnancyloss">Pregnancy Loss (NIH)</a></li>
+                        <li><a href="https://www.cdc.gov/ncbddd/birthdefects/facts.html">General birth defects (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/ncbddd/birthdefects/prevention.html">Avoiding birth defects (CDC)</a></li> 
+           
+                        
+                    </ol>
+                </div>
+            </div>
+            <div class="category">
+                <h2 class="category-heading" onclick="toggleSubtopics('preparations')">▹ Preparing for Baby</h2>
+                <div class="subtopics" id="preparations">
+                    <ol>
+                        <li><a href="https://www.womenshealth.gov/breastfeeding/learning-breastfeed/preparing-breastfeed">Preparing to breastfeed (OASH)</a></li>
+                        <li><a href="https://www.womenshealth.gov/pregnancy/getting-ready-baby/health-care-baby">Health care for baby (OASH)</a></li>
+                        <li><a href="https://www.womenshealth.gov/pregnancy/getting-ready-baby/making-your-home-safe-baby">Making home safe for baby (OASH)</a></li>
+                        <li><a href="https://www.womenshealth.gov/pregnancy/childbirth-and-beyond/your-babys-first-hours-life">Baby's first hours of life (OASH)</a></li>
+                        <li><a href="https://www.womenshealth.gov/pregnancy/childbirth-and-beyond/babysitters-and-child-care">Babysitters and childcare (OASH)</a></li>
+                        <li><a href="https://health.gov/myhealthfinder/pregnancy/doctor-and-midwife-visits/talk-your-doctor-about-newborn-screening#the-basics-tab">Newborn screening (health.gov)</a></li>
+                        <li><a href="https://www.cdc.gov/ncbddd/birthdefects/facts.html">What are birth defects (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/ncbddd/birthdefects/diagnosis.html">Diagnosis of birth defects (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/birth-defects/prevention/">Preventing birth defects (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/child-development/about/developmental-disability-basics.html">Facts about developmental disabilities (CDC)</a></li>
+                        <li><a href="https://www.nichd.nih.gov/health/topics/labor-delivery/topicinfo/induction">Induction of Labor (NIH)</a></li>
+                        <li><a href="https://www.nichd.nih.gov/health/topics/labor-delivery/topicinfo/stages">Stages of labor (NIH)</a></li>
+                        
+                        
+                        
+                    </ol>
+                </div>
+            </div>
+            <div class="category">
+                <h2 class="category-heading" onclick="toggleSubtopics('others')">▹ Miscellaneous</h2>
+                <div class="subtopics" id="others">
+                    <ol>
+                        <li><a href="https://www.womenshealth.gov/pregnancy/youre-pregnant-now-what/twins-triplets-and-other-multiples">Twins, triplets and other multiples (OASH)</a></li>
+                        <li><a href="https://www.womenshealth.gov/glossary#preterm_birth">Pregnancy-related glossary (OASH)</a></li>
+                        <li><a href="https://www.womenshealth.gov/a-z-topics/pregnancy-tests">Pregnancy tests (OASH)</a></li>
+                        <li><a href="https://www.fda.gov/drugs/postmarket-drug-safety-information-patients-and-providers/questions-and-answers-mifepristone-medical-termination-pregnancy-through-ten-weeks-gestation">Mifepristone safety (FDA)</a></li>
+                        <li><a href="https://medlineplus.gov/ency/patientinstructions/000835.htm">Ending pregnancy with medicines (MEDLINEPLUS)</a></li>
+                        <li><a href="https://medlineplus.gov/ency/article/007382.htm">Abortion – medication (MEDLINEPLUS)</a></li>
+                        <li><a href="https://medlineplus.gov/ency/article/007382.htm">Abortion – procedure (MEDLINEPLUS)</a></li>
+                        
+                    </ol>
+                </div>
+            </div>
+            <!-- <div class="category">
+                <h2 class="category-heading" onclick="toggleSubtopics('defects2')">▹ Specific Birth Defects</h2>
+                <div class="subtopics" id="defects2">
+                    <ol>
+                        <li><a href="https://www.cdc.gov/ncbddd/birthdefects/anophthalmia-microphthalmia.html">Anophthalmia / Microphthalmia (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/ncbddd/birthdefects/anotia-microtia.html">Anotia/microtia (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/ncbddd/birthdefects/cleftlip.html">Cleft lip/cleft palate (CDC)</a></li> 
+                        <li><a href="https://www.cdc.gov/ncbddd/birthdefects/craniosynostosis.html">Craniosynostosis (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/ncbddd/birthdefects/diaphragmatichernia.html">Diaphragmic hernia (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/ncbddd/birthdefects/esophagealatresia.html">Esophageal atresia (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/ncbddd/birthdefects/gastroschisis.html">Gastroschisis (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/ncbddd/birthdefects/hypospadias.html">Hypospadias (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/ncbddd/birthdefects/microcephaly.html">Microcephaly (CDC)</a></li> 
+                        <li><a href="https://www.cdc.gov/ncbddd/birthdefects/omphalocele.html">Omphalocele (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/ncbddd/birthdefects/ul-limbreductiondefects.html">Upper and lower limb reduction defect (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/ncbddd/musculardystrophy/facts.html">Muscular dystrophy: quick facts (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/ncbddd/birthdefects/facts-about-neural-tube-defects.html">Neural tube defects, general (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/ncbddd/birthdefects/anencephaly.html">Anencephaly (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/ncbddd/birthdefects/encephalocele.html">Encephalocele (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/ncbddd/spinabifida/facts.html">Spina bifida (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/ncbddd/birthdefects/downsyndrome.html">Down syndrome (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/ncbddd/heartdefects/facts.html">Congenital heart defects, general (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/ncbddd/heartdefects/cchd-facts.html">Critical CHDs (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/ncbddd/heartdefects/atrialseptaldefect.html">Atrial septal defect (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/ncbddd/heartdefects/avsd.html">Atrioventricular septal defect (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/ncbddd/heartdefects/coarctationofaorta.html">Coarctation of the aorta (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/ncbddd/heartdefects/d-tga.html">d-Transposition of the great arteries (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/ncbddd/heartdefects/hlhs.html">Hypoplastic left heart syndrome (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/ncbddd/heartdefects/pulmonaryatresia.html">Pulmonary atresia (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/ncbddd/heartdefects/tetralogyoffallot.html">Tetralogy of Fallot (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/ncbddd/heartdefects/tapvr.html">Total anomalous pulmonary venous return (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/ncbddd/heartdefects/truncusarteriosus.html">Truncus arteriosus (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/ncbddd/heartdefects/tricuspid-atresia.html">Tricuspid atresia (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/ncbddd/heartdefects/ventricularseptaldefect.html">Ventricular septal defect (CDC)</a></li>
+    
+    
+                        
+                    </ol>
+                </div>
+            </div>
+    
+            <div class="category">
+                <h2 class="category-heading" onclick="toggleSubtopics('mangcond')">▹ Managing Specific Conditions during pregnancy</h2>
+                <div class="subtopics" id="mangcond">
+                    <ol>
+                        <li><a href="https://www.cdc.gov/ncbddd/developmentaldisabilities/facts.html">Facts about developmental disabilities (CDC)</a></li>
+                        <li><a href="https://health.gov/myhealthfinder/pregnancy/nutrition-and-physical-activity/eat-healthy-during-pregnancy-quick-tips">Eat Healthy During Pregnancy: Quick Tips (OASH)</a></li>
+                        <li><a href="https://www.niddk.nih.gov/health-information/weight-management/healthy-eating-physical-activity-for-life/health-tips-for-pregnant-women#:~:text=take%20while%20pregnant).-,Eat%20breakfast%20every%20day.,a%20week%20during%20your%20pregnancy.">Health Tips for Pregnant Women (NIDDKD)</a></li> 
+                        <li><a href="https://www.cdc.gov/diabetes/basics/gestational.html">Gestational Diabetes (CDC)</a></li>
+                        <li><a href="https://www.foodsafety.gov/people-at-risk/pregnant-women">Food to avoid during Pregnancy (foodsafety.gov)</a></li>
+                        <li><a href="https://www.cdc.gov/ncbddd/folicacid/recommendations.html">Folic Acid Recommendations (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/ncbddd/fasd/alcohol-use.html">Alcohol Use During Pregnancy (CDC)</a></li>
+                        <li><a href="https://orwh.od.nih.gov/research/maternal-morbidity-and-mortality/information-for-women/alcohol-use-and-pregnancy">Alcohol Use in Pregnancy (NIH)</a></li>
+                        <li><a href="https://www.cdc.gov/ncbddd/fasd/faqs.html">Alcohol and Pregnancy Questions and Answers (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/std/pregnancy/stdfact-pregnancy-detailed.htm">STDs during Pregnancy – CDC Basic Fact Sheet</a></li>
+                        <li><a href="https://www.cdc.gov/pregnancy/infections.html">Tips for Preventing Infections Before and During Pregnancy (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/pregnancy/diabetes-types.html">Type 1 or Type 2 Diabetes and Pregnancy (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/pregnancy/diabetes-gestational.html">Gestational Diabetes (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/pregnancy/opioids/basics.html">About Opioid Use During Pregnancy (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/pregnancy/opioids/treatment.html">Treatment for Opioid Use Disorder During Pregnancy (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/drugoverdose/pdf/pregnancy_opioid_pain_factsheet-a.pdf">Pregnancy and Opioid Pain Medications (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/pregnancy/meds/treatingfortwo/features/prescription-drug-use-during-pregnancy.html">Prescription Drug Use During Pregnancy (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/vaccines/pregnancy/vacc-safety.html">Vaccine Safety for Moms-To-Be (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/vaccines/pregnancy/vacc-during-after.html">Vaccines During and After Pregnancy (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/vaccines/pregnancy/pregnant-women/need-to-know.html">Vaccines and Pregnancy: Things to Know (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/pregnancy/meds/treatingfortwo/facts.html">Facts about Medicine and Pregnancy (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/pregnancy/meds/treatingfortwo/">Medicine and Pregnancy Questions and Answers (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/bloodpressure/pregnancy.htm">High Blood Pressure During Pregnancy (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/flu/highrisk/pregnant.htm">Flu & Pregnancy (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/flu/highrisk/qa_vacpregnant.htm">Flu Vaccine Safety and Pregnancy (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/reproductivehealth/maternalinfanthealth/substance-abuse/substance-abuse-during-pregnancy.htm#tobacco">Substance Use During Pregnancy (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/tobacco/campaign/tips/diseases/pregnancy.html">Smoking, Pregnancy, and Babies (CDC)</a></li>
+                        <li><a href="https://www.cdc.gov/tobacco/basic_information/health_effects/pregnancy/">Smoking During Pregnancy (CDC)</a></li>
+    
+    
+    
+    
+    
+                        
+    
+                    </ol>
+                </div> -->
+            <!-- </div> -->
+        </div>
+    </div>
+    
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById("sidebar");
+            sidebar.classList.toggle("visible");
+        }
+
+        // function toggleDropdown() {
+        //     const content = document.getElementById("sidebar-content");
+        //     const arrow = document.getElementById("dropdown-arrow");
+        //     content.classList.toggle("expanded");
+        //     arrow.textContent = content.classList.contains("expanded") ? "▲" : "▼";
+        // }
+
+        function toggleSubtopics(id) {
+            const subtopics = document.getElementById(id);
+            subtopics.style.display = subtopics.style.display === "block" ? "none" : "block";
+        }
+    </script>
+</body>
 </html>
+
+
+
 
 

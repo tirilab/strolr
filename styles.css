@@ -5,83 +5,167 @@ body {
     padding: 0;
     background-color: #f0f2f6; /* Light grey background */
     color: #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    min-height: 100vh;
 }
 
-/* Container for overall layout */
-.container {
-    width: 90%;
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow for card effect */
-    flex-direction: row;
+/* Toggle Button */
+#toggle-sidebar {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: #3d8af7;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+    z-index: 10;
 }
+
+#toggle-sidebar:hover {
+    background-color: #2a5db0;
+}
+
+/* Flex container for layout */
+.flex-container {
+    display: flex;
+    margin: 20px auto;
+    width: 95%;
+    max-width: 1400px;
+}
+
+/* Sidebar styling */
 .sidebar-card {
-    width: 300px;
+    width: 0px;
+    padding: 0px;
+    background-color: #ffffff;
+    border-right: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    transition: width 0.3s ease, padding 0.3s ease;
+}
+
+.sidebar-card.visible {
+    width: 280px;
+    padding: 20px;
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.sidebar-header h2 {
+    font-size: 18px;
+    color: #1f2937;
+    margin: 0;
+}
+
+#dropdown-arrow {
+    font-size: 18px;
+    color: #3d8af7;
+}
+
+/* Sidebar Content */
+.sidebar-content {
+    display: none;
+    font-size: 13px; /* Reduced font size */
+    color: #6b7280; /* Muted gray color */
+    line-height: 1.6; /* Increased line height for readability */
+    margin-top: 10px;
+}
+
+.sidebar-content.expanded {
+    display: block;
+}
+
+.sidebar-content p {
+    margin: 10px 0;
+}
+
+#resources-button {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #3d8af7;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+#resources-button:hover {
+    background-color: #2a5db0;
+}
+
+/* Content styling */
+.content {
     flex: 1;
     padding: 20px;
-    background-color: #f3f4f6;
-    border-right: 1px solid #e5e7eb;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    margin-left: 20px; /* Adds spacing between sidebar and content */
 }
 
-.sidebar-card h2 {
-    font-size: 24px;
-    color: #1f2937;
-    margin-bottom: 10px;
-}
-
-.sidebar-card p {
-    font-size: 16px;
-    color: #4b5563;
-    line-height: 1.5;
-}
-
-.content {
-    flex: 3;
-    padding: 20px;
-}
-
-/* Header styling */
-h1 {
-    text-align: left;
-    color: #333; /* Streamlit blue color */
-    font-size: 1.8em;
+.content h1 {
+    color: #000000;
+    font-size: 2em;
+    text-align: center;
+    font-weight: bold;
     margin-top: 0;
+    margin-bottom: 20px;
 }
 
 /* Category section */
 .category {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .category-heading {
     font-size: 1.2em;
-    cursor: pointer;
     color: #3d8af7;
+    cursor: pointer;
     padding: 10px;
     background-color: #f9fafc;
-    border-radius: 5px;
-    display: left;
+    border-radius: 8px;
+    display: flex;
     align-items: center;
     justify-content: space-between;
     transition: background-color 0.3s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 .category-heading:hover {
-    background-color: #ebeff5;
+    background-color: #e3e8f2;
+}
+
+/* Arrow icon for expandable categories */
+.category-heading::before {
+    content: x;
+    font-size: 1.2em;
+    color: #3d8af7;
+    margin-right: 8px;
+    transition: transform 0.2s ease;
+}
+
+.category-heading.active::before {
+    transform: rotate(90deg);
 }
 
 /* Subtopics list */
 .subtopics {
     display: none;
     margin-top: 10px;
+    padding-left: 20px;
 }
 
 .subtopics ol {
@@ -98,56 +182,27 @@ h1 {
     border-bottom: none;
 }
 
-/* Link styling */
 .subtopics li a {
     text-decoration: none;
-    color: #333;
+    color: #3d8af7;
     font-weight: 500;
+    transition: color 0.2s ease;
 }
 
 .subtopics li a:hover {
-    color: #3d8af7;
+    color: #1a3f7f;
     text-decoration: underline;
 }
 
-/* Expandable arrow styling */
-.category-heading::before {
-    content: '';
-    font-size: 1.2em;
-    color: #3d8af7;
-    margin-right: 8px;
-    transition: transform 0.2s ease;
-}
-
-.category-heading.active::before {
-    transform: rotate(90deg);
-}
-
 /* Responsive design */
-@media (max-width: 600px) {
-    .container {
-        width: 100%;
-        padding: 15px;
-    }
-
-    h1 {
-        font-size: 1.5em;
-    }
-
-    .category-heading {
-        font-size: 1em;
-    }
-}
-
-/* Add responsive behavior for smaller screens */
 @media (max-width: 768px) {
-    .container {
-        flex-direction: column; /* Stack vertically on smaller screens */
+    .flex-container {
+        flex-direction: column;
     }
 
     .sidebar-card {
+        width: 100%;
         border-right: none;
         border-bottom: 1px solid #e5e7eb;
     }
 }
-

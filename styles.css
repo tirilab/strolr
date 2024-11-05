@@ -25,7 +25,7 @@ body {
 
 /* Header styling */
 h1 {
-    text-align: center;
+    text-align: left;
     color: #3d8af7; /* Streamlit blue color */
     font-size: 1.8em;
     margin-top: 0;
@@ -43,7 +43,7 @@ h1 {
     padding: 10px;
     background-color: #f9fafc;
     border-radius: 5px;
-    display: flex;
+    display: left;
     align-items: center;
     justify-content: space-between;
     transition: background-color 0.3s ease;
@@ -87,7 +87,7 @@ h1 {
 
 /* Expandable arrow styling */
 .category-heading::before {
-    content: '▹';
+    content: '';
     font-size: 1.2em;
     color: #3d8af7;
     margin-right: 8px;

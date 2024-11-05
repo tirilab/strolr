@@ -22,11 +22,34 @@ body {
     border-radius: 8px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow for card effect */
 }
+.sidebar-card {
+    flex: 1;
+    padding: 20px;
+    background-color: #f3f4f6;
+    border-right: 1px solid #e5e7eb;
+}
+
+.sidebar-card h2 {
+    font-size: 24px;
+    color: #1f2937;
+    margin-bottom: 10px;
+}
+
+.sidebar-card p {
+    font-size: 16px;
+    color: #4b5563;
+    line-height: 1.5;
+}
+
+.content {
+    flex: 3;
+    padding: 20px;
+}
 
 /* Header styling */
 h1 {
     text-align: left;
-    color: #3d8af7; /* Streamlit blue color */
+    color: #333; /* Streamlit blue color */
     font-size: 1.8em;
     margin-top: 0;
 }

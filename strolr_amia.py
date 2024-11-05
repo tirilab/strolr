@@ -239,7 +239,7 @@ if user_input:
                 formatted_query = {'input': query}
                 result = chain.invoke(formatted_query)
                 #metadata = [msg for msg in result]
-            
+                print(result)
                 #response = metadata[0][1]
                 response = format_response(result)
                 if ("don't know" in response) or ("do not know" in response) or ("cannot answer" in response) or ("can't answer" in response):

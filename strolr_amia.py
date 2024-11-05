@@ -169,8 +169,7 @@ def load_chain_with_sources():
 	    Do not return sources if you responded with I don't know.
        
         {context}
-        Question: {question}
-        Helpful Answer:"""
+       """
 
     # Create the Conversational Chain
     prompt = ChatPromptTemplate.from_messages(

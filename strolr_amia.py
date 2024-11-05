@@ -22,6 +22,7 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
 from langchain.prompts import PromptTemplate
 from langchain.prompts.chat import SystemMessagePromptTemplate
+from langchain_core.prompts import ChatPromptTemplate
 from langchain.chains import RetrievalQA
 from IPython.display import Markdown, display
 from streamlit_extras.switch_page_button import switch_page
@@ -172,13 +173,15 @@ def load_chain_with_sources():
         Helpful Answer:"""
 
     # Create the Conversational Chain
-    prompt = PromptTemplate.from_template(template)
+    prompt = ChatPromptTemplate.from_messages(
+    [
+        ("system", template),
+        ("human", "{input}"),
+    ]
+)
     question_answer_chain = create_stuff_documents_chain(llm, prompt)
-
     # Set up the RAG chain
     chain = create_retrieval_chain(retriever, question_answer_chain)
-
-
 
     # Invoke the RAG chain with the question
     return chain 
@@ -234,11 +237,12 @@ if user_input:
                 message_placeholder.markdown('...')
                 # Send user's question to our chain
                 context = "\n".join([message["content"] for message in st.session_state.messages])
-                result = chain.invoke(query)
+                formatted_query = {'input': query}
+                result = chain.invoke(formatted_query)
                 #metadata = [msg for msg in result]
             
                 #response = metadata[0][1]
-                response = format_response(result['answer'])
+                response = format_response(result)
                 if ("don't know" in response) or ("do not know" in response) or ("cannot answer" in response) or ("can't answer" in response):
                     response = re.sub(r"(Sources used:.*)", '', response, flags=re.DOTALL)
                 # Simulate stream of response with milliseconds delay

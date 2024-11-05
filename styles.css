@@ -1,19 +1,115 @@
-/* Basic styling for the page */
+/* Basic page styling */
 body {
     font-family: Arial, sans-serif;
-    line-height: 1.0;
-    margin: 15px;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f6; /* Light grey background */
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
+/* Container for overall layout */
+.container {
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow for card effect */
+}
+
+/* Header styling */
 h1 {
     text-align: center;
+    color: #3d8af7; /* Streamlit blue color */
+    font-size: 1.8em;
+    margin-top: 0;
+}
+
+/* Category section */
+.category {
+    margin-bottom: 20px;
 }
 
 .category-heading {
+    font-size: 1.2em;
     cursor: pointer;
-    margin-bottom: 5px;
+    color: #3d8af7;
+    padding: 10px;
+    background-color: #f9fafc;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background-color 0.3s ease;
 }
 
+.category-heading:hover {
+    background-color: #ebeff5;
+}
+
+/* Subtopics list */
 .subtopics {
     display: none;
+    margin-top: 10px;
+}
+
+.subtopics ol {
+    list-style-type: none;
+    padding: 0;
+}
+
+.subtopics li {
+    padding: 5px 0;
+    border-bottom: 1px solid #f0f2f6;
+}
+
+.subtopics li:last-child {
+    border-bottom: none;
+}
+
+/* Link styling */
+.subtopics li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+.subtopics li a:hover {
+    color: #3d8af7;
+    text-decoration: underline;
+}
+
+/* Expandable arrow styling */
+.category-heading::before {
+    content: '▹';
+    font-size: 1.2em;
+    color: #3d8af7;
+    margin-right: 8px;
+    transition: transform 0.2s ease;
+}
+
+.category-heading.active::before {
+    transform: rotate(90deg);
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    .container {
+        width: 100%;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    .category-heading {
+        font-size: 1em;
+    }
 }

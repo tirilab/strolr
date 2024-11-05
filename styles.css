@@ -194,15 +194,34 @@ body {
     text-decoration: underline;
 }
 
-/* Responsive design */
+/* Responsive design for mobile screens */
 @media (max-width: 768px) {
+    /* Stack containers vertically */
     .flex-container {
         flex-direction: column;
+        width: 100%; /* Full width for mobile */
     }
 
+    /* Sidebar takes full width */
     .sidebar-card {
         width: 100%;
+        margin-bottom: 20px; /* Spacing below the sidebar */
         border-right: none;
         border-bottom: 1px solid #e5e7eb;
     }
+
+    /* Reduce padding and font size for smaller screens */
+    .content, .sidebar-card {
+        padding: 15px;
+    }
+
+    .content h1 {
+        font-size: 1.5em; /* Smaller font size for headers */
+    }
+
+    .category-heading {
+        font-size: 1em;
+        padding: 8px; /* Reduce padding for better fit */
+    }
 }
+

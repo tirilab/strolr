@@ -24,6 +24,7 @@ body {
     flex-direction: row;
 }
 .sidebar-card {
+    width: 300px;
     flex: 1;
     padding: 20px;
     background-color: #f3f4f6;

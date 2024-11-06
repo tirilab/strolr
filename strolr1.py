@@ -112,12 +112,14 @@ def format_response(responses):
             
     return result
 
+@st.cache_resource
 def retrieve_sources(query):
 
     # CONNECT TO RDS
     connection = "postgresql+psycopg://langchain:langchain@strolrdb.c348i082m9zo.us-east-2.rds.amazonaws.com:5432/postgres"
     collection_name = "strolr_docs"
     embeddings = OpenAIEmbeddings()
+
     store = PGVector(
     embeddings=embeddings,
     collection_name=collection_name,
@@ -125,10 +127,11 @@ def retrieve_sources(query):
     use_jsonb=True,)
 
     sources = store.similarity_search_with_score(query, k=3)
+    print(sources)
 
     return sources 
 
-
+@st.cache_resource
 def summarize_sources():
     llm = ChatOpenAI(model="gpt-4o-mini")
     template = """
@@ -201,7 +204,6 @@ if user_input:
                 context = "\n".join([message["content"] for message in st.session_state.messages])
                 sources = retrieve_sources(query)
                 chain = summarize_sources()
-                print(chain)
                 result = chain.invoke({'context':sources})
                 response = format_response(result)
 

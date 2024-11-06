@@ -10,29 +10,23 @@ from langchain_postgres import PGVector
 from langchain_postgres.vectorstores import PGVector
 
 
+def retrieve_sources(query):
 
-embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
-# RDS Connection details
-connection = "postgresql+psycopg://langchain:langchain@strolrdb.c348i082m9zo.us-east-2.rds.amazonaws.com:5432/postgres"
-collection_name = "strolr_docs"
-
-vector_store = PGVector(
+    # CONNECT TO RDS
+    connection = "postgresql+psycopg://langchain:langchain@strolrdb.c348i082m9zo.us-east-2.rds.amazonaws.com:5432/postgres"
+    collection_name = "strolr_docs"
+    embeddings = OpenAIEmbeddings()
+    
+    store = PGVector(
     embeddings=embeddings,
     collection_name=collection_name,
     connection=connection,
-    use_jsonb=True,
-)
+    use_jsonb=True,)
 
-#with open('docs.pkl', 'rb') as f:
-#    data = pickle.load(f)
+    sources = store.similarity_search_with_score(query, k=3)
+    print(sources)
 
-#vector_store.add_documents(data)
+    return sources 
 
-query = "Is it safe for my unborn baby if I eat raw fish during pregnancy?"
 
-similar = vector_store.similarity_search_with_score(query, k=3)
-similar2 = vector_store.similarity_search_by_vector(query, k=3)
-
-print(similar)
-
-print(similar2)
+retrieve_sources('What can I do to protect my baby?')

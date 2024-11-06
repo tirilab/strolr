@@ -9,12 +9,9 @@ from langchain_core.documents import Document
 from langchain_postgres import PGVector
 from langchain_postgres.vectorstores import PGVector
 
-
-
-embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
-# RDS Connection details
 connection = "postgresql+psycopg://langchain:langchain@strolrdb.c348i082m9zo.us-east-2.rds.amazonaws.com:5432/postgres"
 collection_name = "strolr_docs"
+embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
 
 vector_store = PGVector(
     embeddings=embeddings,
@@ -22,9 +19,13 @@ vector_store = PGVector(
     connection=connection,
     use_jsonb=True,
 )
+#query = "What should I do if I have a post-partum depression?"
+query = "Is it safe for my unborn baby if I eat raw fish during pregnancy?"
+similar = vector_store.similarity_search_with_score(query, k=3)
+vector = embeddings.embed_query(query)
 
-with open('docs.pkl', 'rb') as f:
-    data = pickle.load(f)
+for doc in similar:
+    print(doc)
+    print('\n')
 
-vector_store.add_documents(data, ids=[doc.metadata["id"] for doc in data])
-
+similar[0][0]

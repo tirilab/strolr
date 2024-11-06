@@ -29,6 +29,9 @@ from langchain_openai import ChatOpenAI
 import time
 import psycopg
 from langchain_core.messages import AIMessage
+from langchain.chains.query_constructor.base import AttributeInfo
+from langchain.retrievers.self_query.base import SelfQueryRetriever
+from langchain_openai import ChatOpenAI
 
 # layout
 st.set_page_config(layout="wide")
@@ -85,7 +88,22 @@ else:
 messages_for_download = []
 chat_hist = ''
 
+from typing import Any, Dict
 
+
+class CustomSelfQueryRetriever(SelfQueryRetriever):
+    def _get_docs_with_query(
+        self, query: str, search_kwargs: Dict[str, Any]
+    ) -> List[Document]:
+        """Get docs, adding score information."""
+        docs, scores = zip(
+            *self.vectorstore.similarity_search_with_score(query, **search_kwargs)
+        )
+        for doc, score in zip(docs, scores):
+            doc.metadata["score"] = score
+
+        return docs
+    
 # FORMATTING RESPONSES
 def format_response(responses):
     source_documents = responses["context"]
@@ -117,6 +135,31 @@ def format_response(responses):
 def load_chain_with_sources():
     
     embeddings = OpenAIEmbeddings()
+
+
+    metadata_field_info = [
+    AttributeInfo(
+        name="title",
+        description="The title of the website.",
+        type="string",
+    ),
+    AttributeInfo(
+        name="source",
+        description="The URL of the website",
+        type="string",
+    ),
+    AttributeInfo(
+        name="language",
+        description="The language that the website was written in. Almost all will be English or en",
+        type="string",
+    ),
+    AttributeInfo(
+        name="description", 
+        description="Brief summary of the website", 
+        type="string"
+    ),
+]
+
     
     # CONNECT TO RDS
     connection = "postgresql+psycopg://langchain:langchain@strolrdb.c348i082m9zo.us-east-2.rds.amazonaws.com:5432/postgres"
@@ -126,10 +169,15 @@ def load_chain_with_sources():
     collection_name=collection_name,
     connection=connection,
     use_jsonb=True,)
-    retriever = store.as_retriever(search_type="similarity", search_kwargs = {"k":3})
-    llm = ChatOpenAI(temperature = 0.8, model = "gpt-4o-mini")
-    
 
+    llm = ChatOpenAI(temperature = 0.8, model = "gpt-4o-mini")
+
+    retriever = CustomSelfQueryRetriever.from_llm(
+    llm,
+    store,
+    "Pregnancy related information",
+    metadata_field_info,
+    )
 
     # Create memory 'chat_history' 
     #memory = ConversationBufferMemory(memory_key="chat_history", output_key='answer', return_messages = True)
@@ -222,7 +270,7 @@ if user_input:
                 formatted_query = {'input': query}
                 result = chain.invoke(formatted_query)
                 #metadata = [msg for msg in result]
-                print(result)
+                #print(result)
                 #response = metadata[0][1]
                 response = format_response(result)
                 if ("don't know" in response) or ("do not know" in response) or ("cannot answer" in response) or ("can't answer" in response):

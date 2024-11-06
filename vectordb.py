@@ -26,5 +26,5 @@ vector_store = PGVector(
 with open('docs.pkl', 'rb') as f:
     data = pickle.load(f)
 
-vector_store.add_documents(data, ids=[doc.metadata["id"] for doc in data])
+vector_store.add_documents(data)
 

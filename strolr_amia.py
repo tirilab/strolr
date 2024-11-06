@@ -142,7 +142,7 @@ def load_chain_with_sources():
    #     connection_string=CONNECTION_STRING,
    #     embedding_function=embeddings,
    # )
-    connection = "postgresql+psycopg://langchain:langchain@strolrdb.c348i082m9zo.us-east-2.rds.amazonaws.com:5432/strolrdb"
+    connection = "postgresql+psycopg://langchain:langchain@strolrdb.c348i082m9zo.us-east-2.rds.amazonaws.com:5432/postgres"
     collection_name = "strolr_docs"
     store = PGVector(
     embeddings=embeddings,

@@ -16,8 +16,6 @@ from langchain_openai import OpenAIEmbeddings
 import os
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain.chains import create_retrieval_chain
-from langchain.memory import ConversationBufferWindowMemory
-from langchain.memory import ConversationBufferMemory
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
 from langchain.prompts import PromptTemplate
@@ -177,7 +175,7 @@ def load_chain_with_sources():
        """
 
     # Create the Conversational Chain
-    prompt = ChatPromptTemplate.from_messages(
+    prompt = ChatPromptTemplate.from_template(
     [
         ("system", template),
         ("human", "{input}"),

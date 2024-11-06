@@ -200,7 +200,7 @@ if user_input:
                 # Send user's question to our chain
                 context = "\n".join([message["content"] for message in st.session_state.messages])
                 sources = retrieve_sources(query)
-                chain = summarize_sources(sources)
+                chain = summarize_sources()
                 result = chain.invoke({'context':sources})
                 response = format_response(result)
 

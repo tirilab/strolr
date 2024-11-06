@@ -11,11 +11,8 @@ from langchain_postgres.vectorstores import PGVector
 import os
 from langchain.docstore.document import Document
 from langchain.document_loaders import TextLoader
-from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.text_splitter import CharacterTextSplitter
-from langchain.vectorstores.pgvector import PGVector
 from langchain.document_loaders import PyPDFLoader
-import psycopg2
 from langchain_community.document_loaders import UnstructuredURLLoader
 from langchain_community.document_loaders import SeleniumURLLoader
 import pandas as pd

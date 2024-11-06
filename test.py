@@ -5,8 +5,6 @@ from langchain_postgres import PGVector
 from langchain_postgres.vectorstores import PGVector
 from langchain_openai import OpenAIEmbeddings
 import pickle
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_openai import ChatOpenAI
 
 from langchain_openai import OpenAI
 from openai import OpenAI
@@ -79,6 +77,7 @@ def load_chain_with_sources():
     question_answer_chain = create_stuff_documents_chain(llm, prompt)
     # Set up the RAG chain
     chain = create_retrieval_chain(retriever, question_answer_chain)
+    
 
     # Invoke the RAG chain with the question
     return chain 

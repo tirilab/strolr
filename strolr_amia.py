@@ -124,8 +124,9 @@ def load_chain_with_sources():
     store = PGVector(
     embeddings=embeddings,
     collection_name=collection_name,
-    connection=connection)
-    retriever = store.as_retriever(search_type="similarity_score_threshold", search_kwargs = {"k":3, "score_threshold":0.8})
+    connection=connection,
+    use_jsonb=True,)
+    retriever = store.as_retriever(search_type="similarity", search_kwargs = {"k":3})
     llm = ChatOpenAI(temperature = 0.8, model = "gpt-4o-mini")
     
 
@@ -167,7 +168,7 @@ def load_chain_with_sources():
     # Invoke the RAG chain with the question
     return chain 
 
-
+# USER CHATS
 if user_input:
 
     if 'session_id' not in st.session_state or st.session_state.session_id == 'strolr_session_' + user_input:
@@ -212,7 +213,7 @@ if user_input:
             with st.chat_message("user"):
                 st.markdown(query)
 
-        
+            # CHATBOT RESPONSE
             with st.chat_message("assistant", avatar=small_logo):
                 message_placeholder = st.empty()
                 message_placeholder.markdown('...')

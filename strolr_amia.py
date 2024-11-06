@@ -10,6 +10,7 @@ from langchain_postgres.vectorstores import PGVector
 from langchain_core.output_parsers import StrOutputParser
 from langchain_openai import OpenAI
 from openai import OpenAI
+from langchain_core.documents import Document
 import openai
 import numpy as np
 from langchain_openai import OpenAIEmbeddings
@@ -88,7 +89,7 @@ else:
 messages_for_download = []
 chat_hist = ''
 
-from typing import Any, Dict
+from typing import Any, Dict, List
 
 
 class CustomSelfQueryRetriever(SelfQueryRetriever):

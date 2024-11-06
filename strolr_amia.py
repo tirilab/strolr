@@ -7,7 +7,6 @@ import streamlit as st
 import streamlit.components.v1 as components
 from langchain_community.vectorstores import PGVector
 from langchain_core.output_parsers import StrOutputParser
-from pgvector.psycopg2 import register_vector
 from langchain_openai import OpenAI
 from openai import OpenAI
 import openai
@@ -29,7 +28,7 @@ from streamlit_extras.switch_page_button import switch_page
 from datetime import date
 from langchain_openai import ChatOpenAI
 import time
-import psycopg2
+import psycopg
 from langchain_core.messages import AIMessage
 
 # layout

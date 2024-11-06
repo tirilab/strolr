@@ -23,8 +23,16 @@ vector_store = PGVector(
     use_jsonb=True,
 )
 
-with open('docs.pkl', 'rb') as f:
-    data = pickle.load(f)
+#with open('docs.pkl', 'rb') as f:
+#    data = pickle.load(f)
 
-vector_store.add_documents(data)
+#vector_store.add_documents(data)
 
+query = "Is it safe for my unborn baby if I eat raw fish during pregnancy?"
+
+similar = vector_store.similarity_search_with_score(query, k=3)
+similar2 = vector_store.similarity_search_by_vector(query, k=3)
+
+print(similar)
+
+print(similar2)

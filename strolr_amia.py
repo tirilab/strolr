@@ -16,7 +16,6 @@ from langchain_openai import OpenAIEmbeddings
 import os
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain.chains import create_retrieval_chain
-
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
 from langchain.prompts import PromptTemplate
@@ -74,26 +73,8 @@ today = date.today()
 user_input = right_column.text_input("Name")
 openai_api_key = os.environ["OPENAI_API_KEY"]
 
-## DATABASE
 
-#COLLECTION_NAME = "strolr_test"
-#CONNECTION_STRING = PGVector.connection_string_from_db_params(
-#     driver=os.environ.get("PGVECTOR_DRIVER", "psycopg2"),
-#     host=os.environ.get("PGVECTOR_HOST", "vectordb.cfowaqqqovp0.us-east-2.rds.amazonaws.com"),
-#     port=int(os.environ.get("PGVECTOR_PORT", "5432")),
-#     database=os.environ.get("PGVECTOR_DATABASE", "postgres"),
-#     user=os.environ.get("PGVECTOR_USER", "postgres"),
-#     password=os.environ.get("PGVECTOR_PASSWORD", "temporary"),
-#)
-
-#conn = psycopg2.connect(
-#    host="vectordb.cfowaqqqovp0.us-east-2.rds.amazonaws.com",
-#    database="postgres",
-#    user="postgres",
-#    password="temporary")
-
-
-# Create a string for downloadable chat history
+# Create a string for downloadable CHAT HISTORY
 if user_input != '':
     chat_hist_download = user_input + '\'s chat history on ' + str(today) + '\n'
     username_hist = user_input
@@ -132,15 +113,12 @@ def format_response(responses):
 
 
 @st.cache_resource
-#def load_chain_with_sources():
+#CHAIN
 def load_chain_with_sources():
     
     embeddings = OpenAIEmbeddings()
-   # store = PGVector(
-   #     collection_name=COLLECTION_NAME,
-   #     connection_string=CONNECTION_STRING,
-   #     embedding_function=embeddings,
-   # )
+    
+    # CONNECT TO RDS
     connection = "postgresql+psycopg://langchain:langchain@strolrdb.c348i082m9zo.us-east-2.rds.amazonaws.com:5432/postgres"
     collection_name = "strolr_docs"
     store = PGVector(

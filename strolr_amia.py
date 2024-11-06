@@ -5,7 +5,8 @@ import re
 from langchain import hub
 import streamlit as st
 import streamlit.components.v1 as components
-from langchain_community.vectorstores import PGVector
+from langchain_postgres import PGVector
+from langchain_postgres.vectorstores import PGVector
 from langchain_core.output_parsers import StrOutputParser
 from langchain_openai import OpenAI
 from openai import OpenAI
@@ -154,7 +155,7 @@ def load_chain_with_sources():
 
     # Create memory 'chat_history' 
     #memory = ConversationBufferMemory(memory_key="chat_history", output_key='answer', return_messages = True)
-    memory = ConversationBufferWindowMemory(k=1, memory_key="chat_history", output_key='answer', return_messages = True)
+    #memory = ConversationBufferWindowMemory(k=1, memory_key="chat_history", output_key='answer', return_messages = True)
 
     # Create system prompt
     template = """

@@ -144,9 +144,9 @@ def load_chain_with_sources():
     connection = "postgresql+psycopg://langchain:langchain@strolrdb.c348i082m9zo.us-east-2.rds.amazonaws.com:5432/strolrdb"
     collection_name = "strolr_docs"
     store = PGVector(
-    embeddings=embeddings,
+    embedding_function=embeddings,
     collection_name=collection_name,
-    connection=connection)
+    connection_string=connection)
     retriever = store.as_retriever(search_type="similarity_score_threshold", search_kwargs = {"k":3, "score_threshold":0.8})
     llm = ChatOpenAI(temperature = 0.8, model = "gpt-4o-mini")
     

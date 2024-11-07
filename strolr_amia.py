@@ -33,7 +33,8 @@ from langchain_core.messages import AIMessage
 from langchain.chains.query_constructor.base import AttributeInfo
 from langchain.retrievers.self_query.base import SelfQueryRetriever
 from langchain_openai import ChatOpenAI
-
+from langchain_core.output_parsers import StrOutputParser
+from langchain_core.runnables import RunnablePassthrough
 # layout
 st.set_page_config(layout="wide")
 left_column = st.sidebar
@@ -89,22 +90,10 @@ else:
 messages_for_download = []
 chat_hist = ''
 
-from typing import Any, Dict, List
 
 
-class CustomSelfQueryRetriever(SelfQueryRetriever):
-    def _get_docs_with_query(
-        self, query: str, search_kwargs: Dict[str, Any]
-    ) -> List[Document]:
-        """Get docs, adding score information."""
-        docs, scores = zip(
-            *self.vectorstore.similarity_search_with_score(query, **search_kwargs)
-        )
-        for doc, score in zip(docs, scores):
-            doc.metadata["score"] = score
-
-        return docs
-    
+def format_docs(docs):
+    return "\n\n".join(doc.page_content for doc in docs)
 # FORMATTING RESPONSES
 def format_response(responses):
     source_documents = responses["context"]
@@ -137,30 +126,6 @@ def load_chain_with_sources():
     
     embeddings = OpenAIEmbeddings()
 
-
-    metadata_field_info = [
-    AttributeInfo(
-        name="title",
-        description="The title of the website.",
-        type="string",
-    ),
-    AttributeInfo(
-        name="source",
-        description="The URL of the website",
-        type="string",
-    ),
-    AttributeInfo(
-        name="language",
-        description="The language that the website was written in. Almost all will be English or en",
-        type="string",
-    ),
-    AttributeInfo(
-        name="description", 
-        description="Brief summary of the website", 
-        type="string"
-    ),
-]
-
     
     # CONNECT TO RDS
     connection = "postgresql+psycopg://langchain:langchain@strolrdb.c348i082m9zo.us-east-2.rds.amazonaws.com:5432/postgres"
@@ -170,19 +135,10 @@ def load_chain_with_sources():
     collection_name=collection_name,
     connection=connection,
     use_jsonb=True,)
+    retriever = store.as_retriever()
+
 
     llm = ChatOpenAI(temperature = 0.8, model = "gpt-4o-mini")
-
-    retriever = CustomSelfQueryRetriever.from_llm(
-    llm,
-    store,
-    "Pregnancy related information",
-    metadata_field_info,
-    )
-
-    # Create memory 'chat_history' 
-    #memory = ConversationBufferMemory(memory_key="chat_history", output_key='answer', return_messages = True)
-    #memory = ConversationBufferWindowMemory(k=1, memory_key="chat_history", output_key='answer', return_messages = True)
 
     # Create system prompt
     template = """
@@ -191,14 +147,12 @@ def load_chain_with_sources():
         The patient is looking for information related to pregnancy. 
         This patient has below a proficient health literacy level based on the National Assessment of Adult Literacy. Please adjust your response accordingly.
         This patient reads at a 6th grade reading level. Please adjust your response accordingly.
-        Only provide the answer to questions you can find answers to in the database. If the information is not in the database, just apologize and say that you do not know the answer.
+        Only provide the answer to questions you can find answers to in the {context}. If the information is not there, just apologize and say that you do not know the answer.
         Never provide resources if they are not relevant to the user's question. If applicable, highlight the text you referenced from the original source. If no sources are relevant for a user's question, never include any resources in your response.
-        Don't try to make up an answer.
         Never give a response in any language besides the English language even if the user requests it.
         If the question is not related to pregnancy or childcare, politely inform them that you are tuned to only answer questions about pregnancy and childcare.
         If the answer is not in the {context}, say that you don't know in a kind way or give them a suggestion on a different question to ask.
         Do your best to understand typos, casing, and framing of questions. 
-	    Do not return sources if you responded with I don't know.
        
         {context}
        """
@@ -207,12 +161,29 @@ def load_chain_with_sources():
     prompt = ChatPromptTemplate.from_messages(
     [
         ("system", template),
-        ("human", "{input}"),
+        
     ]
 )
-    question_answer_chain = create_stuff_documents_chain(llm, prompt)
-    # Set up the RAG chain
-    chain = create_retrieval_chain(retriever, question_answer_chain)
+    rag_chain_from_docs = (
+        {
+            "input": lambda x: x["input"],  # input query
+            "context": lambda x: format_docs(x["context"]),  # context
+        }
+        | prompt  # format query and context into prompt
+        | llm  # generate response
+        | StrOutputParser()  # coerce to string
+    )
+
+    # Pass input query to retriever
+    retrieve_docs = (lambda x: x["input"]) | retriever
+
+    # Below, we chain `.assign` calls. This takes a dict and successively
+    # adds keys-- "context" and "answer"-- where the value for each key
+    # is determined by a Runnable. The Runnable operates on all existing
+    # keys in the dict.
+    chain = RunnablePassthrough.assign(context=retrieve_docs).assign(
+        answer=rag_chain_from_docs
+    )
 
     # Invoke the RAG chain with the question
     return chain 

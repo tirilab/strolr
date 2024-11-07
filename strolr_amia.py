@@ -40,34 +40,64 @@ left_column = st.sidebar
 right_column = st
 
 # Display the name of the app
+st.markdown(
+    """
+    <style>
+    .centered-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .responsive-text {
+        font-size: 1.8em;  /* Increase font size */
+        text-align: center;
+        margin-top: 10px;   /* Add spacing below logo */
+        word-wrap: break-word;
+        white-space: normal;
+    }
+    @media (max-width: 768px) {
+        .responsive-text {
+            font-size: 1.4em;  /* Adjust font size for smaller screens */
+        }
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
-left_co, cent_co,last_co = st.columns(3)
-logo = "LOGO_FINAL.png"
+# Columns for layout
+left_co, cent_co, last_co = st.columns([1, 2, 1])  # Center column wider to allow space for text
 small_logo = "strolr_bot.svg"
+# Centered logo and text in the same column with alignment
+logo = "LOGO_FINAL.png"
 with cent_co:
+    st.markdown('<div class="centered-content">', unsafe_allow_html=True)
     st.image(logo)
+    st.markdown(
+        '<div class="responsive-text">An LLM-Enabled Chatbot To Support Pregnant Women’s Information Seeking From Trustworthy Sources</div>',
+        unsafe_allow_html=True
+    )
+    st.markdown('</div>', unsafe_allow_html=True)
 
-right_column.write(r"$\textsf{\large An LLM-Enabled Chatbot To Support Pregnant Women’s Information Seeking From Trustworthy Sources}$")
 
 # Sidebar
 with st.sidebar.expander("How to use"):
     st.write("""
         **How to use Strolr**\n\n
-        
+
         Type your question in the chat and press *Enter* to start the conversation.\n
-        Strolr is only designed to answer the questions related to pregnancy and childcare.\n
-        To view the source of information provided by Strolr, click the link in the response.\n 
+        Strolr is only designed to answer the questions related to healthy pregnancy.\n
+        To view the source of information provided by Strolr, click the link in the response.\n
         To browse all sources, click the *Resources* button below.\n
-        
-        Your chat history will be lost after you close the session. 
+
+        Your chat history will be lost after you close the session.
         Click *Download chat history* button, if you wish to save the conversaion.\n
-        
+
         Strolr is **NOT** designed to give you medical advice.\n
         **If you are experiencing an emergency, call 9-1-1 immediately.**
     """)
-    
-left_column.link_button("Resources", "https://tirilab.github.io/strolr/", help = "Click to browse resources")
 
+left_column.link_button("Resources", "https://tirilab.github.io/strolr/", help = "Click to browse resources")
 
 # Main content area - Chat
 right_column.title('Chat with Strolr')
@@ -148,29 +178,25 @@ store = PGVector(
 @st.cache_resource
 #CHAIN
 def load_chain_with_sources():
-    
-    retriever = store.as_retriever(search_type="similarity_score_threshold", search_kwargs = {"k":3, "score_threshold":0.3})
+
+    retriever = store.as_retriever(search_type="similarity_score_threshold", search_kwargs = {"k":3, "score_threshold":0.35})
 
 
-    llm = ChatOpenAI(temperature = 0.8, model = "gpt-4o-mini")
+    llm = ChatOpenAI(temperature = 0.5, model = "gpt-4o-mini")
 
     # Create system prompt
     template = """
         You are acting as a friendly clinician who is speaking to a patient.
         Do not say you are an AI. Don't say you're a clinician ever to the user.
-        The patient is looking for information related to pregnancy. 
-        This patient has below a proficient health literacy level based on the National Assessment of Adult Literacy. Please adjust your response accordingly.
+        The patient is looking for information related to healthy pregnancy according to {input}. Assuming the user is pregnant, if the question is not about pregnancy health, you can apologize, say you don't>        This patient has below a proficient health literacy level based on the National Assessment of Adult Literacy. Please adjust your response accordingly.
         This patient reads at a 6th grade reading level. Please adjust your response accordingly.
-        Only provide the answer to questions you can find answers to in the {context}. If the information is not there, just apologize and say that you do not know the answer.
-        Never provide resources if they are not relevant to the user's question. If applicable, highlight the text you referenced from the original source. If no sources are relevant for a user's question, never include any resources in your response.
+        Only provide the answer to {input} you can find answers to in the {context}. Do your best to comprehensively summarize all the relevant information in the {context}. If the information is not there, j>        Never provide resources if they are not relevant to the user's question.
         Never give a response in any language besides the English language even if the user requests it.
-        If the question is not related to pregnancy or childcare, politely inform them that you are tuned to only answer questions about pregnancy and childcare.
         If the answer is not in the {context}, say that you don't know in a kind way or give them a suggestion on a different question to ask.
-        Do your best to understand typos, casing, and framing of questions. 
-       
+        Do your best to understand typos, casing, and framing of questions.
+        {input}
         {context}
        """
-
     # Create the Conversational Chain
     prompt = ChatPromptTemplate.from_messages(
     [
@@ -209,23 +235,23 @@ if user_input:
 
         if 'session_id' not in st.session_state:
             st.session_state.session_id = 'strolr_session_' + user_input
-    
+
         chain = load_chain_with_sources()
 
         if 'messages' not in st.session_state:
             # Start with first message from assistant
-            st.session_state['messages'] = [{"role": "assistant", 
+            st.session_state['messages'] = [{"role": "assistant",
                                           "content": '🌟 **Welcome to Strolr - Your Pregnancy Info Companion!** 🌟 \n'
                                           '\n'
-                                          f'Hi {user_input}! 👋 I\'m Strolr, your go-to chatbot for all things pregnancy-related! While I\'m here to help answer your questions, it\'s important to note that I\'m not a substitute for professional medical advice. Always consult with your healthcare provider for personalized guidance.\n'
+                                          f'Hi {user_input}! 👋 I\'m Strolr, your go-to chatbot for all things related to healthy pregnancies! While I\'m here to help answer your questions, it\'s important to>
                                           '\n'
-                                          'My mission is to provide quick and reliable information by tapping into a database filled with trustworthy pregnancy sources. I\'m your virtual pregnancy encyclopedia, designed to make finding information a breeze.\n'
+                                          'My mission is to provide quick and reliable information by tapping into a database filled with trustworthy pregnancy sources. I\'m your virtual pregnancy encyclopedi>
                                           '\n'
-                                          'Feel free to ask me about topics like nutrition, prenatal care, common symptoms, and much more. If you have a pressing question, I\'m here to help point you in the right direction based on reliable sources.\n'
+                                          'Feel free to ask me about topics like nutrition, fetal development, prental care and more that you can find in the Resources tab to the left. If you have a pressing >
                                           '\n'
-                                          'Remember, I\'m here to assist and inform, but your healthcare provider should be your primary source for personalized advice. Let\'s embark on this journey together, and feel free to ask me anything about pregnancy! 🤰💬\n'
+                                          'Remember, I\'m here to assist and inform, but your healthcare provider should be your primary source for personalized advice. Let\'s embark on this journey together,>
                                           '\n'
-                                          '*NOTE:* your chat history will **not** be saved when you close the session. If you wish to save your conversation, click **Download chat history** button in the chat.'}]
+                                          '*NOTE:* your chat history will **not** be saved when you close the session. If you wish to save your conversation, click **Download chat history** button in the chat>
 
         
         # Display chat messages from history on app rerun
@@ -256,10 +282,11 @@ if user_input:
                 formatted_query = {'input': query}
                 result = chain.invoke(formatted_query)
                 #metadata = [msg for msg in result]
-                #print(result)
+                print(result)
                 #response = metadata[0][1]
                 response = format_response(result)
-                if ("don't know" in response) or ("do not know" in response) or ("cannot answer" in response) or ("can't answer" in response):
+                match_str = r"(don''t know)|(do not know)|(cannot answer)|(can''t answer)|(I am sorry, I don''t know)|(I''m sorry, I don''t know)|(I''m sorry, I can''t answer)"
+                if re.match(match_str, response):
                     response = re.sub(r"(Sources used:.*)", '', response, flags=re.DOTALL)
                 # Simulate stream of response with milliseconds delay
                 #for chunk in response.split():
@@ -290,6 +317,4 @@ if user_input:
 
 
 st.cache_data.clear() 
-
-
 

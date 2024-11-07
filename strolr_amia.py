@@ -243,15 +243,15 @@ if user_input:
             st.session_state['messages'] = [{"role": "assistant",
                                           "content": '🌟 **Welcome to Strolr - Your Pregnancy Info Companion!** 🌟 \n'
                                           '\n'
-                                          f'Hi {user_input}! 👋 I\'m Strolr, your go-to chatbot for all things related to healthy pregnancies! While I\'m here to help answer your questions, it\'s important to>
+                                          f'Hi {user_input}! 👋 I\'m Strolr, your go-to chatbot for all things related to healthy pregnancies! While I\'m here to help answer your questions, it\'s important to note that I\'m not a substitute for professional medical advice. Always consult with your healthcare provider for personalized guidance.\n'
                                           '\n'
-                                          'My mission is to provide quick and reliable information by tapping into a database filled with trustworthy pregnancy sources. I\'m your virtual pregnancy encyclopedi>
+                                          'My mission is to provide quick and reliable information by tapping into a database filled with trustworthy pregnancy sources. I\'m your virtual pregnancy encyclopedia, designed to make finding information a breeze.\n'
                                           '\n'
-                                          'Feel free to ask me about topics like nutrition, fetal development, prental care and more that you can find in the Resources tab to the left. If you have a pressing >
+                                          'Feel free to ask me about topics like nutrition, fetal development, prental care and more that you can find in the Resources tab to the left. If you have a pressing question, I\'m here to help point you in the right direction based on reliable sources.\n'
                                           '\n'
-                                          'Remember, I\'m here to assist and inform, but your healthcare provider should be your primary source for personalized advice. Let\'s embark on this journey together,>
+                                          'Remember, I\'m here to assist and inform, but your healthcare provider should be your primary source for personalized advice. Let\'s embark on this journey together, and feel free to ask me anything about pregnancy! 🤰💬\n'
                                           '\n'
-                                          '*NOTE:* your chat history will **not** be saved when you close the session. If you wish to save your conversation, click **Download chat history** button in the chat>
+                                          '*NOTE:* your chat history will **not** be saved when you close the session. If you wish to save your conversation, click **Download chat history** button in the chat.'}]
 
         
         # Display chat messages from history on app rerun

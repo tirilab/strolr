@@ -125,7 +125,7 @@ CONNECTION_STRING = PGVector.connection_string_from_db_params(
      port=int(os.environ.get("PGVECTOR_PORT", "5432")),
      database=os.environ.get("PGVECTOR_DATABASE", "postgres"),
      user=os.environ.get("PGVECTOR_USER", "langchain"),
-     password=os.environ.get("PGVECTOR_PASSWORD", "langchain"),
+     password=os.environ.get("PGVECTOR_PASSWORD", "langchain"),)
 
 @st.cache_resource
 #CHAIN

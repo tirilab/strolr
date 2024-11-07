@@ -15,6 +15,7 @@ import pandas as pd
 import numpy as np
 import openai
 import nltk
+import pickle
 nltk.download('punkt')
 
 with open('docs.pkl', 'rb') as f:

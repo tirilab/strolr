@@ -118,31 +118,21 @@ def format_response(responses):
                 used_urls.append(source_metadata[i]['source'])
             
     return result
-COLLECTION_NAME = "strolr_docs"
-CONNECTION_STRING = PGVector.connection_string_from_db_params(
-     driver=os.environ.get("PGVECTOR_DRIVER", "psycopg2"),
-     host=os.environ.get("PGVECTOR_HOST", "strolrdb.c348i082m9zo.us-east-2.rds.amazonaws.com"),
-     port=int(os.environ.get("PGVECTOR_PORT", "5432")),
-     database=os.environ.get("PGVECTOR_DATABASE", "postgres"),
-     user=os.environ.get("PGVECTOR_USER", "langchain"),
-     password=os.environ.get("PGVECTOR_PASSWORD", "langchain"),)
+
+# CONNECT TO RDS
+connection = "postgresql+psycopg://langchain:langchain@strolrdb.c348i082m9zo.us-east-2.rds.amazonaws.com:5432/postgres"
+collection_name = "strolr_docs"
+embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
+
+store = PGVector(
+embeddings=embeddings,
+collection_name=collection_name,
+connection=connection,
+use_jsonb=True,)
 
 @st.cache_resource
 #CHAIN
 def load_chain_with_sources():
-    
-    embeddings = OpenAIEmbeddings()
-
-    
-    # CONNECT TO RDS
-    connection = "postgresql+psycopg://langchain:langchain@strolrdb.c348i082m9zo.us-east-2.rds.amazonaws.com:5432/postgres"
-    collection_name = "strolr_docs"
-  
-    store = PGVector(
-        collection_name=COLLECTION_NAME,
-        connection_string=CONNECTION_STRING,
-        embedding_function=embeddings,
-    )
     
     retriever = store.as_retriever(search_type="similarity_score_threshold", search_kwargs = {"k":3, "score_threshold":0.3})
 

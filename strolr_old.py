@@ -77,21 +77,21 @@ openai_api_key = os.environ["OPENAI_API_KEY"]
 
 ## DATABASE
 
-COLLECTION_NAME = "strolr_test"
+COLLECTION_NAME = "strolr_docs"
 CONNECTION_STRING = PGVector.connection_string_from_db_params(
      driver=os.environ.get("PGVECTOR_DRIVER", "psycopg2"),
      host=os.environ.get("PGVECTOR_HOST", "strolrdb.c348i082m9zo.us-east-2.rds.amazonaws.com"),
      port=int(os.environ.get("PGVECTOR_PORT", "5432")),
      database=os.environ.get("PGVECTOR_DATABASE", "postgres"),
-     user=os.environ.get("PGVECTOR_USER", "postgres"),
-     password=os.environ.get("PGVECTOR_PASSWORD", "temporary"),
+     user=os.environ.get("PGVECTOR_USER", "langchain"),
+     password=os.environ.get("PGVECTOR_PASSWORD", "langchain"),
 )
 
 conn = psycopg2.connect(
-    host="vectordb.cfowaqqqovp0.us-east-2.rds.amazonaws.com",
+    host="strolrdb.c348i082m9zo.us-east-2.rds.amazonaws.com",
     database="postgres",
-    user="postgres",
-    password="temporary")
+    user="langchain",
+    password="langchain")
 
 
 # Create a string for downloadable chat history

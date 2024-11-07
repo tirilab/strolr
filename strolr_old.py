@@ -136,7 +136,7 @@ def format_response(responses):
 #def load_chain_with_sources():
 def load_chain_with_sources():
     
-    embeddings = OpenAIEmbeddings()
+    embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
     store = PGVector(
         collection_name=COLLECTION_NAME,
         connection_string=CONNECTION_STRING,

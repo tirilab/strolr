@@ -27,7 +27,7 @@ connection = "postgresql+psycopg://langchain:langchain@strolrdb.c348i082m9zo.us-
 collection_name = "strolr_docs"
 
 vector_store = PGVector.from_documents(
-    embeddings=embeddings,
+    embedding=embeddings,
     documents = data,
     collection_name=collection_name,
     connection_string=connection,

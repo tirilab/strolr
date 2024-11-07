@@ -5,8 +5,7 @@ import re
 from langchain import hub
 import streamlit as st
 import streamlit.components.v1 as components
-from langchain_postgres import PGVector
-from langchain_postgres.vectorstores import PGVector
+from langchain_community.vectorstores import PGVector
 from langchain_core.output_parsers import StrOutputParser
 from langchain_openai import OpenAI
 from openai import OpenAI
@@ -28,7 +27,7 @@ from streamlit_extras.switch_page_button import switch_page
 from datetime import date
 from langchain_openai import ChatOpenAI
 import time
-import psycopg
+import psycopg2
 from langchain_core.messages import AIMessage
 from langchain.chains.query_constructor.base import AttributeInfo
 from langchain.retrievers.self_query.base import SelfQueryRetriever
@@ -120,15 +119,31 @@ def format_response(responses):
     return result
 
 # CONNECT TO RDS
+
+COLLECTION_NAME = "strolr_docs"
+CONNECTION_STRING = PGVector.connection_string_from_db_params(
+     driver=os.environ.get("PGVECTOR_DRIVER", "psycopg2"),
+     host=os.environ.get("PGVECTOR_HOST", "strolrdb.c348i082m9zo.us-east-2.rds.amazonaws.com"),
+     port=int(os.environ.get("PGVECTOR_PORT", "5432")),
+     database=os.environ.get("PGVECTOR_DATABASE", "postgres"),
+     user=os.environ.get("PGVECTOR_USER", "langchain"),
+     password=os.environ.get("PGVECTOR_PASSWORD", "langchain"),
+)
+
+conn = psycopg2.connect(
+    host="strolrdb.c348i082m9zo.us-east-2.rds.amazonaws.com",
+    database="postgres",
+    user="langchain",
+    password="langchain")
 connection = "postgresql+psycopg://langchain:langchain@strolrdb.c348i082m9zo.us-east-2.rds.amazonaws.com:5432/postgres"
 collection_name = "strolr_docs"
 embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
-
 store = PGVector(
-embeddings=embeddings,
-collection_name=collection_name,
-connection=connection,
-use_jsonb=True,)
+    collection_name=COLLECTION_NAME,
+    connection_string=CONNECTION_STRING,
+    embedding_function=embeddings,
+)
+    
 
 @st.cache_resource
 #CHAIN

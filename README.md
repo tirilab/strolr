@@ -33,12 +33,12 @@ The primary goal of Strolr is to connect pregnant individuals to trustworthy hea
      - U.S. Department of Health and Human Services (HHS)
 
 2. **Data Storage and Retrieval**:
-   - Document embeddings are generated from the compiled resources and stored in an **Amazon RDS for PostgreSQL** database hosted on an **AWS Virtual Private Cloud (VPC)**.
+   - Document embeddings are generated from the compiled resources and stored in an **Amazon RDS for PostgreSQL** database hosted on an **AWS Virtual Private Cloud (VPC)**. If you intend to use this locally, you can make a local PostgreSQL database.
 
 3. **Chat Workflow**:
    - Users interact with a Streamlit web app to input their queries.
    - Documents relevant to the query are retrieved using **vector similarity** matching.
-   - The retrieved documents are summarized using **LangChain** and **OpenAI's GPT-3.5-turbo model**.
+   - The retrieved documents are summarized using **LangChain** and **OpenAI's GPT-4-o mini model**.
    - Strolr’s responses:
      - Summarize the content at a basic health literacy level.
      - Cite all retrieved documents.

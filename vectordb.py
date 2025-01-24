@@ -23,7 +23,7 @@ with open('docs.pkl', 'rb') as f:
 
 embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
 # RDS Connection details
-connection = "postgresql+psycopg://langchain:langchain@strolrdb.c348i082m9zo.us-east-2.rds.amazonaws.com:5432/postgres"
+connection = "postgresql+psycopg://langchain:langchain@s****
 collection_name = "strolr_docs"
 
 vector_store = PGVector.from_documents(

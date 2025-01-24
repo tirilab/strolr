@@ -10,10 +10,7 @@ Strolr is a chatbot designed to help pregnant individuals access trustworthy, ve
 1. [Solution Overview](#solution-overview)
 2. [Features](#features)
 3. [Setup Instructions](#setup-instructions)
-4. [Usage](#usage)
-5. [Technologies Used](#technologies-used)
-6. [Contributing](#contributing)
-7. [License](#license)
+
 
 ---
 

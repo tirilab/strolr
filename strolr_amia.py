@@ -153,7 +153,7 @@ def format_response(responses):
 COLLECTION_NAME = "strolr_docs"
 CONNECTION_STRING = PGVector.connection_string_from_db_params(
      driver=os.environ.get("PGVECTOR_DRIVER", "psycopg2"),
-     host=os.environ.get("PGVECTOR_HOST", "strolrdb.c348i082m9zo.us-east-2.rds.amazonaws.com"),
+     host=os.environ.get("PGVECTOR_HOST", "****"),
      port=int(os.environ.get("PGVECTOR_PORT", "5432")),
      database=os.environ.get("PGVECTOR_DATABASE", "postgres"),
      user=os.environ.get("PGVECTOR_USER", "langchain"),
@@ -165,7 +165,7 @@ conn = psycopg2.connect(
     database="postgres",
     user="langchain",
     password="langchain")
-connection = "postgresql+psycopg://langchain:langchain@strolrdb.c348i082m9zo.us-east-2.rds.amazonaws.com:5432/postgres"
+connection = "postgresql+psycopg://langchain:langchain@strolrdb.*****"
 collection_name = "strolr_docs"
 embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
 store = PGVector(

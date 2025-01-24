@@ -60,7 +60,7 @@ The primary goal of Strolr is to connect pregnant individuals to trustworthy hea
 ### **Prerequisites**
 1. Install Python (version >= 3.8).
 2. Install PostgreSQL and set up an RDS instance.
-3. Obtain API keys for OpenAI and AWS services.
+3. Obtain API keys for OpenAI.
 
 ### **Installation**
 1. Clone this repository:

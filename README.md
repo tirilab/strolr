@@ -2,7 +2,7 @@
 Repo for “Strolr: An LLM-enabled Chatbot to Support Pregnant Women’s Quick and Easy Information Seeking from Trustworthy Sources.”
 AMIA National Symposium 2024, San Francisco, CA. 
 
-Strolr is a chatbot designed to help pregnant individuals access trustworthy, verified health information quickly and effectively. By summarizing and delivering health information from verified resources, Strolr supports users of varying health literacy levels by providing clear, concise, and easy-to-understand responses.
+Strolr is a chatbot designed to help pregnant individuals access trustworthy, verified health information quickly and effectively. By summarizing and delivering health information from verified resources, Strolr was designed to support users of varying health literacy levels by providing clear, concise, and easy-to-understand responses.
 
 ---
 

@@ -70,7 +70,7 @@ The primary goal of Strolr is to connect pregnant individuals to trustworthy hea
 
 ### **File Navigation**
 1. **url_resources.csv** - This is a list of resources curated for Strolr's pilot database. The URLs are provided for the relational database.
-2. **lanchain.ipynb** - This python notebook shows the process of loading the URLs from the curated list, chunks the documents, embeds them (need OpenAI key here), creates a vector store (Docker), and adds the documents to the vector store.
+2. **langchain.ipynb** - This python notebook shows the process of loading the URLs from the curated list, chunks the documents, embeds them (need OpenAI key here), creates a vector store (Docker), and adds the documents to the vector store.
   a. A **docs.pkl** file was created to save the documents. You can use **vectordb.py** to only embed and add the data from the vector store by loading the docs.pkl file.
 3. **strolr_amia.py** - This file contains the necessary functions for running the full Strolr Streamlit app, with connections to your database and OpenAI key required to run.
 4. **stror_bot.svg** and **LOGO_FINAL.png** - Logos for app.
